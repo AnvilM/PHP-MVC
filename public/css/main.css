@@ -1,0 +1,13 @@
+*{
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    margin: 0;
+    background-color: #fff;
+}
+.message{
+    background-color: #000;
+    color: #fff;
+}
