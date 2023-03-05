@@ -1,9 +1,10 @@
 <?php
 session_start();
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-use app\core\Router;
+use src\core\Router;
 
 
 spl_autoload_register(function ($class) {

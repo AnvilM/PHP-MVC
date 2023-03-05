@@ -15,10 +15,9 @@
     <link rel="stylesheet" href="/public/css/main.css">
     <title><?= $title ?></title>
 </head>
-    <?php 
-        if(isset($_SESSION['Message'])){
-            echo '<div class="message">'.$_SESSION['Message'].'</div>';
-        }
-    ?>
-    <?= $view ?>
+    <body>
+        <div class="root">
+            <?= $view ?>
+        </div>
+    </body>
 </html>

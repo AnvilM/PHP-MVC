@@ -11,7 +11,7 @@ $routes = [
         'Title' => 'Главная'
     ],
     [
-        'Route' => 'account/login',
+        'Route' => 'Account/Login',
         'Controller' => 'Account',
         'Action' => 'login',
         'Layout' => 'Default',
@@ -19,7 +19,7 @@ $routes = [
         'Title' => 'Главная'
     ],
     [
-        'Route' => 'account/Signup',
+        'Route' => 'Account/Signup',
         'Controller' => 'Account',
         'Action' => 'Signup',
         'Layout' => 'Default',
