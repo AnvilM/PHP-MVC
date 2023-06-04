@@ -2,18 +2,15 @@
 
 return [
     'all' => [
-        ''
+       ''
+        
     ],
     'noLogined' => [
-        'Account/Signup',
-        'Account/Login',
-        
+        'Login',
+        'Signup'
         
     ],
     'isLogined' => [
         
     ],
-    'admin' => [
-
-    ]
 ];

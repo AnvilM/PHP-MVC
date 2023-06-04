@@ -2,27 +2,37 @@
 
 namespace src\core;
 
+use mysqli;
 use src\core\View;
+use src\lib\User;
 
 abstract class Controller{
 
-    public $view;
-    public $model;
+    public $View;
+    public $Model;
     public $params;
-    public $access;
+    public $User;
 
     function __construct($params){
-
+        
         $this->params = $params;
-
+        
         if(!$this->accessCheck()){
             View::error(404);
         }
-
-        $this->view = new View($params);
+        $this->User = new User();
+        $this->View = new View($params);
         
-        $this->model = $this->loadModel($params['Controller']);
+        $this->Model = $this->loadModel($params['Controller']);
+        
     }
+
+
+    
+
+    
+
+
 
     public function loadModel($model_name){
         $model_path = 'src\models\\'.$model_name.'Model';
@@ -32,26 +42,20 @@ abstract class Controller{
     }
 
     public function accessCheck(){
-        $this->access = require $_SERVER['DOCUMENT_ROOT'].'/src/config/accesscontrol.php';
-        if($this->accessMatch('all')){
+        $access = require $_SERVER['DOCUMENT_ROOT'].'/src/config/accesscontrol.php';
+        if(in_array($this->params['Route'], $access['all'])){
             return true;
         }
-        else if($this->accessMatch('noLogined') &&  !isset($_SESSION['Login'])){
+        else if(in_array($this->params['Route'], $access['noLogined']) &&  !$this->User->isLogined()){
             return true;
         }
-        else if($this->accessMatch('isLogined') && isset($_SESSION['Login'])){
-            return true;
-        }
-        else if ($this->accessMatch('admin') && isset($_SESSION['admin'])){
+        else if(in_array($this->params['Route'], $access['isLogined']) && $this->User->isLogined()){
             return true;
         }
         return false;
     }
 
-    public function accessMatch($key){
-        return in_array($this->params['Route'], $this->access[$key]);
-    }
+    
    
-
 
 }

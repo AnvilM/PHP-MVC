@@ -1,1 +1,1 @@
-<div class="app">404</div>
+Error

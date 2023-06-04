@@ -36,9 +36,15 @@ Class Router{
 
 
     function match(){
+        if(str_contains($_SERVER['REQUEST_URI'], '?')){
+            $ruri = strstr($_SERVER['REQUEST_URI'], '?', true);
+        } else{
+            $ruri = $_SERVER['REQUEST_URI'];
+        }
         foreach($this->routes as $a){
-            if(strtolower($a['Route']) == trim(strtolower($_SERVER['REQUEST_URI']), '/')){
+            if(strtolower($a['Route']) == trim(strtolower($ruri), '/')){
                 $this->params = $a;
+                
                 return true;
             } 
 
