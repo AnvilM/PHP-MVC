@@ -17,9 +17,7 @@ abstract class Controller{
         
         $this->params = $params;
         
-        if(!$this->accessCheck()){
-            View::error(404);
-        }
+        
         $this->User = new User();
         $this->View = new View($params);
         
@@ -41,19 +39,6 @@ abstract class Controller{
         }
     }
 
-    public function accessCheck(){
-        $access = require $_SERVER['DOCUMENT_ROOT'].'/src/config/accesscontrol.php';
-        if(in_array($this->params['Route'], $access['all'])){
-            return true;
-        }
-        else if(in_array($this->params['Route'], $access['noLogined']) &&  !$this->User->isLogined()){
-            return true;
-        }
-        else if(in_array($this->params['Route'], $access['isLogined']) && $this->User->isLogined()){
-            return true;
-        }
-        return false;
-    }
 
     
    

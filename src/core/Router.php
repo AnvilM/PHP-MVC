@@ -12,7 +12,7 @@ Class Router{
     public $params = [];
 
     function __construct(){
-        $this->routes = require_once $_SERVER['DOCUMENT_ROOT'].'\src\config\routes.php';
+        $this->routes = require_once $GLOBALS['ROOT'].'\src\config\routes.php';
         
         if($this->match() === true){
             $controller_path = 'src\controllers\\'.$this->params['Controller'].'Controller';
@@ -22,13 +22,13 @@ Class Router{
                     $controller = new $controller_path($this->params);
                     $controller->$action();            
                 }else{
-                    View::error(404);
+                    echo 'err';
                 }
             }else{
-                View::error(404);
+                echo 'err';
             }
         }else{
-            View::error(404);
+            echo 'err';
         }
     }
    

@@ -2,6 +2,7 @@
 
 namespace src\core;
 
+use Smarty;
 use src\lib\User;
 
 class View{
@@ -15,26 +16,23 @@ class View{
     }
 
     public function render($vars=[]){
-        $view = 'src/views/'.$this->params['Controller'].'/'.$this->params['View'].'.php';
+        $view = $GLOBALS['ROOT'].'resources/views/'.$this->params['Controller'].'/'.$this->params['View'].'.tpl';
         if(file_exists($view)){
-
-            $title = $this->params['Title'];
-            extract($vars);
-
-            // CSS and JS
-            $css = '<link rel="stylesheet" href="/public/css/'.$this->params['Controller'].'/'.$this->params['View'].'.css'.'">';
-            $js = '<script src="/public/js/'.$this->params['Controller'].'/'.$this->params['View'].'.js"></script>';
+        
+        
 
             
+            require_once $GLOBALS['ROOT'].'libs/smarty/libs/Smarty.class.php';
+            $Smarty = new Smarty();
+            $Smarty->setTemplateDir($GLOBALS['ROOT'].'resources/views');
+            $Smarty->setCompileDir($GLOBALS['ROOT'].'compiled');
+            $Smarty->setCacheDir($GLOBALS['ROOT'].'cache');
 
-            
+            $Smarty->assign('vars', $vars);
+
+            $Smarty->display($this->params['Controller'].'/'.$this->params['View'].'.tpl');
            
             
-            ob_start();
-            require $view;
-            $view = ob_get_clean();
-            
-            require 'src/views/Layout/'.$this->params['Layout'].'.php';
             
             
         }
@@ -48,12 +46,6 @@ class View{
 
 
 
-
-    public static function error($code){
-        http_response_code($code);
-        require $_SERVER['DOCUMENT_ROOT'].'/src/views/Error/'.$code.'.php';
-        exit();
-    }
 
     
     
