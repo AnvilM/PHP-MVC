@@ -17,8 +17,3 @@ spl_autoload_register(function ($class) {
 });
 
 $Router = new Router();
-
-
-
-
-
