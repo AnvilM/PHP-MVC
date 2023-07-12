@@ -3,16 +3,13 @@
 namespace src\core;
 
 use Smarty;
-use src\lib\User;
 
 class View{
 
     public $params = [];
-    public $User;
 
     function __construct($params){
         $this->params = $params;
-        $this->User = new User();
     }
 
     public function render($vars=[]){

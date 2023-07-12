@@ -8,7 +8,10 @@ $routes = [
         'Action' => 'Index',
         'Layout' => 'Default',
         'View' => 'Index',
-        'Title' => 'Главная'
+        'Title' => 'Главная',
+        'Middlewares' => [
+            'Auth'
+        ]
     ],
    
 
