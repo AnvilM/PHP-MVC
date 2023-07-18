@@ -2,15 +2,15 @@
 
 namespace src\core;
 
-use mysqli;
 use src\core\View;
-use src\lib\User;
+use src\lib\Env;
 
 abstract class Controller{
 
     public $View;
     public $Model;
     public $params;
+    public $Env;
 
     function __construct($params){
         
@@ -18,6 +18,8 @@ abstract class Controller{
 
         $this->loadMiddleware();
         $this->Model = $this->loadModel($params['Controller']);
+
+        $this->Env = new Env();
     
         $this->View = new View($params);
         

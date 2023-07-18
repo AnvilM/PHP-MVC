@@ -9,8 +9,11 @@ class Db{
     protected $db;
 
     public function __construct(){
-        $settings = require $GLOBALS['ROOT'].'/src/config/db.php';
-        $this->db = new mysqli($settings['hostname'], $settings['username'], $settings['password'], $settings['database']);
+        $DB_HOST = Env::get('DB_HOST');
+        $DB_USER = Env::get('DB_USER');
+        $DB_PASSWORD = Env::get('DB_PASSWORD');
+        $DB_NAME = Env::get('DB_NAME');
+        $this->db = new mysqli($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
     }
 
     public function query($req){

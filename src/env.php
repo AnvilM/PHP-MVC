@@ -1,5 +1,10 @@
 <?php
 
 return [
-    'APP_NAME' => 'name'
+    'APP_NAME' => 'name',
+
+    'DB_HOST' => 'localhost',
+    'DB_USER' => 'root',
+    'DB_PASSWORD' => 'root',
+    'DB_NAME' => 'vc'
 ];
