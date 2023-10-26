@@ -3,22 +3,15 @@
 
 $routes = [
     [
-        'Route' => 'Shift',
+        'Route' => '',
         'Controller' => 'Home',
-        'Action' => 'Shift',
-        'View' => 'Shift',
-    ],
-
-    [
-        'Route' => 'ShiftPOST',
-        'Controller' => 'Home',
-        'Action' => 'ShiftPOST',
-    ],
-
-    [
-        'Route' => 'DecodePOST',
-        'Controller' => 'Home',
-        'Action' => 'DecodePOST',
+        'Action' => 'Index',
+        'Layout' => 'Default',
+        'View' => 'Index',
+        'Title' => 'Главная',
+        'Middlewares' => [
+            'Auth'
+        ]
     ],
    
 
