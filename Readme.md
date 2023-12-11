@@ -1,4 +1,4 @@
-<p align="center"><img src="logo.svg" width="400" alt="Laravel Logo"></p>
+<p align="center"><img src="logo.svg" width="400"></p>
 
 <p align="center">
 <img src="https://img.shields.io/badge/php-4.0.2-blue">
@@ -12,7 +12,7 @@ PHP MVC Framework
 ## Install
 
 ```bash
-composer require anvilm/PHP-MVC
+composer create-project anvilm/PHP-MVC
 ```
 
 ## Getting started
