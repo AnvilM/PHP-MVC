@@ -1,10 +1,5 @@
 <p align="center"><img src="logo.svg" width="400"></p>
 
-<p align="center">
-<img src="https://img.shields.io/badge/php-4.0.2-blue">
-<img src="https://img.shields.io/badge/php-cUrl-green">
-</p>
-
 # About
 
 PHP MVC Framework
