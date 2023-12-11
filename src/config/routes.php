@@ -3,17 +3,15 @@
 
 $routes = [
     [
-        'Route' => '',
+        'Route' => '/home',
         'Controller' => 'Home',
         'Action' => 'Index',
-        'Layout' => 'Default',
         'View' => 'Index',
-        'Title' => 'Главная',
         'Middlewares' => [
             'Auth'
         ]
     ],
-   
+
 
 ];
 
