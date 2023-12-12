@@ -5,9 +5,9 @@
 PHP MVC Framework
 
 ## Install
-
+You can install this using git
 ```bash
-composer create-project anvilm/PHP-MVC
+git clone https://github.com/AnvilM/PHP-MVC
 ```
 
 ## Getting started
