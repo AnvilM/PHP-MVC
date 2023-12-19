@@ -49,7 +49,7 @@ class Router
 
         foreach ($this->routes as $params)
         {
-            if ($params["Route"] === $this->request['route'] && $params["Method"] === $this->request['method'])
+            if ($params["Route"] === $this->request['uri'] && $params["Method"] === $this->request['method'])
             {
                 $this->params = $params;
                 return true;
@@ -122,7 +122,7 @@ class Router
         }
         else
         {
-            throw new ErrorException("Route {$this->request['route']} does not exist");
+            throw new ErrorException("Route {$this->request['uri']} does not exist");
         }
         return false;
     }

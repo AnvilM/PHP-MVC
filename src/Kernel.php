@@ -83,7 +83,10 @@ class Kernel
      */
     private function request(): array
     {
-        $request['route'] = $_SERVER['REQUEST_URI'];
+        $request['uri'] = str_contains($_SERVER['REQUEST_URI'], '?') ? stristr($_SERVER['REQUEST_URI'], '?', true) : $_SERVER['REQUEST_URI'];
+
+
+
 
         $request['method'] = $_SERVER['REQUEST_METHOD'];
 
