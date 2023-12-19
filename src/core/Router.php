@@ -44,12 +44,12 @@ class Router
      * @param  string $method Request method
      * @return bool
      */
-    private function route(string $uri, string $method): bool
+    private function route(): bool
     {
 
         foreach ($this->routes as $params)
         {
-            if ($params["Route"] === $uri && $params["Method"] === $method)
+            if ($params["Route"] === $this->request['route'] && $params["Method"] === $this->request['method'])
             {
                 $this->params = $params;
                 return true;
@@ -102,7 +102,7 @@ class Router
     private function control(): bool
     {
 
-        if ($this->route($this->request['route'], $this->request['method']))
+        if ($this->route())
         {
             if ($this->controller())
             {
