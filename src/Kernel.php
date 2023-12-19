@@ -65,7 +65,7 @@ class Kernel
     public function loadController(): void
     {
         //Load controller
-        $Controller = new $this->params['Controller']($this->params);
+        $Controller = new $this->params['Controller'];
 
         $action = $this->params['Action'];
 
