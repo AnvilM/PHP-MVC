@@ -1,55 +1,129 @@
 <?php
 
-namespace src\core;
+namespace Src\Core;
 
-use src\core\Controller;
-use src\core\View;
+use ErrorException;
+
+class Router
+{
+    private array $routes;
+
+    public array $params;
+
+    private array $request;
 
 
 
-Class Router{
-    public $routes = [];
-    public $params = [];
 
-    function __construct(){
-        $this->routes = require_once $GLOBALS['ROOT'].'\src\config\routes.php';
-        
-        if($this->match() === true){
-            $controller_path = 'src\controllers\\'.$this->params['Controller'].'Controller';
-            if(class_exists($controller_path)){
-                $action = $this->params['Action'].'Action';
-                if(method_exists($controller_path, $action)){
-                    $controller = new $controller_path($this->params);
-                    $controller->$action();            
-                }else{
-                    echo 'err';
-                }
-            }else{
-                echo 'err';
-            }
-        }else{
-            echo 'err';
-        }
+    /**
+     * Construct method
+     *
+     * @return array
+     */
+    public function __construct(array $request)
+    {
+        //Set request array
+        $this->request = $request;
+
+        //Load routes
+        $this->routes = require_once(dirname(__DIR__) . '../routes/routes.php');
+
+
+        //Checks if route, controller and action is true
+        $this->control();
     }
-   
 
 
 
-    function match(){
-        if(str_contains($_SERVER['REQUEST_URI'], '?')){
-            $ruri = strstr($_SERVER['REQUEST_URI'], '?', true);
-        } else{
-            $ruri = $_SERVER['REQUEST_URI'];
-        }
-        foreach($this->routes as $a){
-            if(strtolower($a['Route']) == trim(strtolower($ruri), '/')){
-                $this->params = $a;
-                
+
+
+    /**
+     * Check route
+     *
+     * @param  string $uri Request URI
+     * @param  string $method Request method
+     * @return bool
+     */
+    private function route(string $uri, string $method): bool
+    {
+
+        foreach ($this->routes as $params)
+        {
+            if ($params["Route"] === $uri && $params["Method"] === $method)
+            {
+                $this->params = $params;
                 return true;
-            } 
-
+            }
         }
+
         return false;
     }
 
+
+
+
+
+    /**
+     * Checks if controller eixsts
+     *
+     * @return bool
+     */
+    private function controller(): bool
+    {
+        return class_exists($this->params['Controller']) ? true : false;
+    }
+
+
+
+
+
+    /**
+     * Checks if action method exists
+     *
+     * @return bool
+     */
+    private function action(): bool
+    {
+        return method_exists($this->params['Controller'], $this->params['Action']) ? true : false;
+    }
+
+
+
+
+
+    /**
+     * Checks if route, controller and action is true and throw exception
+     *
+     * @param  bool $route
+     * @param  bool $controller
+     * @param  bool $action
+     * @return bool
+     */
+    private function control(): bool
+    {
+
+        if ($this->route($this->request['route'], $this->request['method']))
+        {
+            if ($this->controller())
+            {
+                if ($this->action())
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new ErrorException("Action {$this->params['Action']} does not exist");
+                }
+            }
+            else
+            {
+                throw new ErrorException("Controller {$this->params['Controller']} does not exist");
+            }
+        }
+        else
+        {
+            throw new ErrorException("Route {$this->request['route']} does not exist");
+        }
+        return false;
+    }
 }

@@ -1,0 +1,20 @@
+{
+    "name": "anvilm/php-mvc",
+    "description": "PHP MVC Framework",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/",
+
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AnvilM",
+            "email": "211anvil112@gmail.com"
+        }
+    ],
+    "require": {}
+}
