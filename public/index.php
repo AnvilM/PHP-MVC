@@ -1,12 +1,24 @@
 <?php
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-
-require_once dirname(__DIR__) . '/vendor/autoload.php';
-
-
 use Src\Kernel;
 
+
+
+
+
+//Define ROOT Directory
+define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+
+
+
+
+
+//Register Composer Auto Loader
+require_once ROOT . '/vendor/autoload.php';
+
+
+
+
+
+//Load Kernel
 $Kernel = new Kernel();

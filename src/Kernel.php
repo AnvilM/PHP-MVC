@@ -2,96 +2,58 @@
 
 namespace Src;
 
-use Src\Core\Middleware;
-use Src\Core\Router;
+use Src\Boot\Application;
 
 class Kernel
 {
-
-    private array $params;
-
-    public array $request;
+    //Configs array
+    private array $Config = [];
 
 
 
 
 
-    /**
-     * Construct
-     *
-     * @return void
-     */
+    //Load Configs, Helprs and Start Application
     public function __construct()
     {
-        //Generate request array
-        $this->request = $this->request();
+        $this->LoadConfig();
 
-        //Load Router
-        $Router = new Router($this->request);
+        $this->LoadHelpers();
 
-        //Get route params from Router class
-        $this->params = $Router->params;
-
-        //Load Middlewares
-        $this->loadMiddleware();
-
-        //Load Controller
-        $this->loadController();
+        $this->LoadApplication();
     }
 
 
 
 
 
-    /**
-     * Load Middleware
-     *
-     * @return void
-     */
-    private function loadMiddleware(): void
+    //Loads Configs
+    private function LoadConfig()
     {
-        $Middleware = new Middleware($this->params);
+        $this->Config['Helpers'] = require_once ROOT . 'config/helpers.php';
     }
 
 
 
 
 
-    /**
-     * Load Controller
-     *
-     * @return void
-     */
-    public function loadController(): void
+    //Loads Helpers
+    private function LoadHelpers()
     {
-        //Load controller
-        $Controller = new $this->params['Controller'];
-
-        $action = $this->params['Action'];
-
-        $Controller->$action($this->request);
+        foreach ($this->Config['Helpers'] as $Helper)
+        {
+            require_once ROOT . 'src/helpers/' . $Helper . '.php';
+        }
     }
 
 
 
 
 
-    /**
-     * Generate request array
-     *
-     * @return array
-     */
-    private function request(): array
+    //Start Application
+    private function LoadApplication()
     {
-        $request['uri'] = str_contains($_SERVER['REQUEST_URI'], '?') ? stristr($_SERVER['REQUEST_URI'], '?', true) : $_SERVER['REQUEST_URI'];
-
-
-
-
-        $request['method'] = $_SERVER['REQUEST_METHOD'];
-
-        $request['ip'] = $_SERVER['REMOTE_ADDR'];
-
-        return $request;
+        $Application = new Application;
+        $Application->make();
     }
 }

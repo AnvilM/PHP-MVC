@@ -6,30 +6,33 @@ use ErrorException;
 
 class Middleware
 {
-    private array $params;
+    private array $Route = [];
 
-    public function __construct(array $params)
+
+
+
+
+    public function __construct(array $Route)
     {
-        $this->params = $params;
+        $this->Route = $Route;
 
         $this->loadMiddlewares();
     }
 
+
+
+
+
+    //Load Middlewares
     private function loadMiddlewares()
     {
-        $Middlewares = $this->params['Middleware'];
-
-        if (count($Middlewares) >= 1)
+        if (count($this->Route['Middleware']) >= 1)
         {
-            foreach ($Middlewares as $Middleware)
+            foreach ($this->Route['Middleware'] as $Middleware)
             {
                 if (class_exists($Middleware))
                 {
-                    $Middleware = new $Middleware();
-                }
-                else
-                {
-                    throw new ErrorException("Middleware {$Middleware} does not exist");
+                    $Middleware = new $Middleware;
                 }
             }
         }

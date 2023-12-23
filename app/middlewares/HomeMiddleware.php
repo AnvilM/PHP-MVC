@@ -6,6 +6,6 @@ class HomeMiddleware
 {
     public function __construct()
     {
-        echo 'adidaszzz';
+        echo 'HomeMiddleware';
     }
 }
