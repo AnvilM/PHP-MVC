@@ -2,7 +2,9 @@
 
 namespace Console\Commands\Make;
 
-use Console\Support\Console\Color;
+use Console\Support\Console\Error;
+use Console\Support\Console\Response;
+
 
 class Controller
 {
@@ -34,7 +36,7 @@ class Controller
         }
         else
         {
-            //throw new exeption Controller already exists
+            Error::ThrowErrorWithResponse(" Controller [$this->ControllerPath] already exists");
         }
     }
 
@@ -55,8 +57,7 @@ class Controller
 
     private function Response()
     {
-        $Color = new Color();
 
-        $Color->Text("SUCCESS")->BgColor('Green')->Next()->Text(" Controller [$this->ControllerPath] created successfully")->WriteSpace();
+        Response::Success(" Controller [$this->ControllerPath] created successfully");
     }
 }
