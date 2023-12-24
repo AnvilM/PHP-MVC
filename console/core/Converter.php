@@ -2,7 +2,7 @@
 
 namespace Console\Core;
 
-use Console\Config\Config;
+use Console\Support\Config;
 
 class Converter
 {

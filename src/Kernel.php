@@ -3,21 +3,18 @@
 namespace Src;
 
 use Src\Boot\Application;
+use Src\Support\Config;
 
 class Kernel
 {
-    //Configs array
-    private array $Config = [];
 
 
 
 
 
-    //Load Configs, Helprs and Start Application
+    //Load Helprs and Start Application
     public function __construct()
     {
-        $this->LoadConfig();
-
         $this->LoadHelpers();
 
         $this->LoadApplication();
@@ -27,22 +24,12 @@ class Kernel
 
 
 
-    //Loads Configs
-    private function LoadConfig()
-    {
-        $this->Config['Helpers'] = require_once ROOT . 'config/helpers.php';
-    }
-
-
-
-
-
     //Loads Helpers
     private function LoadHelpers()
     {
-        foreach ($this->Config['Helpers'] as $Helper)
+        foreach (Config::get('helpers') as $Helper)
         {
-            require_once ROOT . 'src/helpers/' . $Helper . '.php';
+            require_once ROOT . '/src/helpers/' . $Helper . '.php';
         }
     }
 

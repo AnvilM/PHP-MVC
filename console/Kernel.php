@@ -2,7 +2,7 @@
 
 namespace Console;
 
-use Console\Config\Config;
+use Console\Support\Config;
 use Console\Nailer\Nailer;
 
 class Kernel

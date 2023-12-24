@@ -1,6 +1,6 @@
 <?php
 
-namespace Console\Config;
+namespace Console\Support;
 
 class Config
 {
