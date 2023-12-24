@@ -11,6 +11,10 @@ class ComposerStaticInit09db3b9e37d6c69ea243f93d02a5cc9c
         array (
             'Src\\' => 4,
         ),
+        'C' => 
+        array (
+            'Console\\' => 8,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -21,6 +25,10 @@ class ComposerStaticInit09db3b9e37d6c69ea243f93d02a5cc9c
         'Src\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Console\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/console',
         ),
         'App\\' => 
         array (
