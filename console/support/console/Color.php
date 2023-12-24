@@ -107,15 +107,31 @@ class Color
 
     public function Write()
     {
+        $this->Build();
+
+        print_r($this->Text);
+    }
+
+
+
+    public function WriteSpace()
+    {
+        $this->Build();
+
+        print_r("\n $this->Text \n ");
+    }
+
+
+
+    private function Build()
+    {
         if ($this->WrittenText == '')
         {
-            $Text = $this->TextColor . $this->BgColor . $this->Text . "\e[39m\e[49m";
+            $this->Text = $this->TextColor . $this->BgColor . $this->Text . "\e[39m\e[49m";
         }
         else
         {
-            $Text = $this->WrittenText . $this->TextColor . $this->BgColor . $this->Text . "\e[39m\e[49m";
+            $this->Text = $this->WrittenText . $this->TextColor . $this->BgColor . $this->Text . "\e[39m\e[49m";
         }
-
-        print_r($Text);
     }
 }
