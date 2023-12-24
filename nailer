@@ -1,0 +1,24 @@
+<?php
+
+use Console\Kernel;
+
+
+
+
+
+//Define ROOT Directory
+define('ROOT', __DIR__ . DIRECTORY_SEPARATOR);
+
+
+
+
+
+//Register Composer Auto Loader
+require_once ROOT . '/vendor/autoload.php';
+
+
+
+
+
+//Load Kernel
+$Kernel = new Kernel($argv);
