@@ -1,6 +1,7 @@
 <?php
 
 use Console\Commands\Make\Controller;
+use Console\Commands\Make\Model;
 use Console\Commands\Printr;
 
 return [
@@ -12,5 +13,10 @@ return [
     [
         'Name' => 'make:controller',
         'Class' => Controller::class
+    ],
+
+    [
+        'Name' => 'make:model',
+        'Class' => Model::class
     ]
 ];

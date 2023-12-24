@@ -1,15 +1,11 @@
 <?php
 
-function GetControllerData($Controller)
+function GetControllerData(string $Controller)
 {
-    return "<?php
+    return "<?php\n\nnamespace App\Controllers;\n\nclass $Controller\n{\n    //\n}";
+}
 
-    namespace App\Controllers;
-    
-    
-    class $Controller
-    {
-        //
-    }
-    ";
+function GetModelData(string $Model)
+{
+    return "<?php\n\nnamespace App\Models;\n\nclass $Model\n{\n    //\n}";
 }
