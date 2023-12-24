@@ -3,7 +3,7 @@
 return
     [
         [
-            "URI" => '/home/{id}/biba/{anus}',
+            "URI" => '/home',
             "Method" => 'GET',
             "Controller" => "App\Controllers\HomeController",
             "Action" => "IndexAction",
