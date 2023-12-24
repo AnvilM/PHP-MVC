@@ -12,10 +12,29 @@ class Response
         $Console->Text("SUCCESS")->BgColor('Green')->Next()->Text($Message)->BgColor('White')->WriteSpace();
     }
 
-    public static function Failure($Message)
+    public static function SeccessWithExit(string $Message)
+    {
+        $Console = new Console;
+
+        $Console->Text("SUCCESS")->BgColor('Green')->Next()->Text($Message)->BgColor('White')->WriteSpace();
+
+        exit();
+    }
+
+
+    public static function Failure(string $Message)
     {
         $Console = new Console;
 
         $Console->Text("FAILURE")->BgColor('Red')->Next()->Text($Message)->BgColor('White')->WriteSpace();
+    }
+
+    public static function FailureWithExit(string $Message)
+    {
+        $Console = new Console;
+
+        $Console->Text("FAILURE")->BgColor('Red')->Next()->Text($Message)->BgColor('White')->WriteSpace();
+
+        exit();
     }
 }
