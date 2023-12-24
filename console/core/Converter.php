@@ -15,7 +15,7 @@ class Converter
 
 
 
-
+    //Set arguments, commands and buil command
     public function __construct($Arguments)
     {
         $this->Arguments = $Arguments;
@@ -29,6 +29,7 @@ class Converter
 
 
 
+    //Build command
     private function Build()
     {
         if ($this->Check())
@@ -45,6 +46,7 @@ class Converter
 
 
 
+    //Chesk if command exists
     private function Check()
     {
         foreach ($this->CommandList as $CommandListEl)
@@ -61,6 +63,7 @@ class Converter
 
 
 
+    //Set command name
     private function Name()
     {
         $this->Command['Name'] = $this->Arguments[1];
@@ -70,6 +73,7 @@ class Converter
 
 
 
+    //Set command arguments
     private function Arguments()
     {
         $this->Command['Arguments'] = [];
@@ -84,6 +88,7 @@ class Converter
 
 
 
+    //Set command class
     private function Class()
     {
         foreach ($this->CommandList as $CommandListEl)

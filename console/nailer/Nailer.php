@@ -10,6 +10,10 @@ class Nailer
 
     private array $Command = [];
 
+
+
+
+    //Covert Aguments to Command and Execute
     public function __construct($Arguments)
     {
         $this->Converter($Arguments);
@@ -17,6 +21,10 @@ class Nailer
         $this->Execute();
     }
 
+
+
+
+    //Covert Aguments to Command
     private function Converter($Arguments)
     {
         $Converter = new Converter($Arguments);
@@ -26,7 +34,7 @@ class Nailer
 
 
 
-
+    //Execute Command
     private function Execute()
     {
         if (class_exists($this->Command['Class']))
