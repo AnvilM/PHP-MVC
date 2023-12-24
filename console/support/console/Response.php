@@ -12,7 +12,7 @@ class Response
         $Console->Text("SUCCESS")->BgColor('Green')->Next()->Text($Message)->BgColor('White')->WriteSpace();
     }
 
-    public static function SeccessWithExit(string $Message)
+    public static function SuccessWithExit(string $Message)
     {
         $Console = new Console;
 

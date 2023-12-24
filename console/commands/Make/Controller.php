@@ -2,7 +2,6 @@
 
 namespace Console\Commands\Make;
 
-use Console\Support\Console\Error;
 use Console\Support\Console\Response;
 
 
@@ -36,7 +35,7 @@ class Controller
         }
         else
         {
-            Error::ThrowErrorWithResponse(" Controller [$this->ControllerPath] already exists");
+            Response::FailureWithExit(" Controller [$this->ControllerPath] already exists");
         }
     }
 
@@ -58,6 +57,6 @@ class Controller
     private function Response()
     {
 
-        Response::Success(" Controller [$this->ControllerPath] created successfully");
+        Response::SuccessWithExit(" Controller [$this->ControllerPath] created successfully");
     }
 }
