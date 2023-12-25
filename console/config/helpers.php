@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'Make'
+    'Make',
+    'Command'
 ];
