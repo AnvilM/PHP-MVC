@@ -4,9 +4,9 @@ namespace Console\Support\Console;
 
 class Console
 {
-    private string $TextColor = "\e[39m";
+    private string $TextColor = "";
 
-    private string $BgColor = "\e[49m";
+    private string $BgColor = "";
 
     private string $Text = '';
 
@@ -44,8 +44,11 @@ class Console
             case ('cyan'):
                 $this->TextColor = "\e[36m";
                 break;
-        }
 
+            default:
+                $this->TextColor = "\e[39m";
+                break;
+        }
         return $this;
     }
 
@@ -80,6 +83,10 @@ class Console
 
             case ('cyan'):
                 $this->BgColor = "\e[46m";
+                break;
+
+            default:
+                $this->BgColor = "\e[49m";
                 break;
         }
         return $this;
@@ -118,7 +125,14 @@ class Console
     {
         $this->Build();
 
-        print_r("\n $this->Text \n ");
+        print_r("\n\r $this->Text \n\n\r\r ");
+    }
+
+    public function WriteLn()
+    {
+        $this->Build();
+
+        print_r("$this->Text \n\n\r\r ");
     }
 
 
