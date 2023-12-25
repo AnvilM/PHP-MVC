@@ -2,12 +2,14 @@
 
 namespace Console\Support;
 
-class Config
+use Console\Contracts\Support\Config as SupportConfig;
+
+class Config implements SupportConfig
 {
 
 
     //Get config
-    public static function get(string $config)
+    public static function get(string $config): array
     {
         return require_once ROOT . "/console/config/{$config}.php";
     }

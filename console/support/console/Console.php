@@ -2,7 +2,9 @@
 
 namespace Console\Support\Console;
 
-class Console
+use Console\Contracts\Support\Console\Console as ContractsConsoleConsole;
+
+class Console implements ContractsConsoleConsole
 {
     private string $TextColor = "";
 
@@ -12,7 +14,7 @@ class Console
 
     private string $WrittenText = '';
 
-    public function TextColor(string $Color)
+    public function TextColor(string $Color): Console
     {
         $Color = strtolower($Color);
         switch ($Color)
@@ -52,7 +54,7 @@ class Console
         return $this;
     }
 
-    public function BgColor(string $Color)
+    public function BgColor(string $Color): Console
     {
         $Color = strtolower($Color);
         switch ($Color)
@@ -92,14 +94,14 @@ class Console
         return $this;
     }
 
-    public function Text(string $Text)
+    public function Text(string $Text): Console
     {
         $this->Text = $Text;
 
         return $this;
     }
 
-    public function Next()
+    public function Next(): Console
     {
         $this->WrittenText = $this->WrittenText . $this->TextColor . $this->BgColor . $this->Text . "\e[39m\e[49m";
 
@@ -112,7 +114,7 @@ class Console
         return $this;
     }
 
-    public function Write()
+    public function Write(): void
     {
         $this->Build();
 
@@ -121,14 +123,14 @@ class Console
 
 
 
-    public function WriteSpace()
+    public function WriteSpace(): void
     {
         $this->Build();
 
         print_r("\n\r $this->Text \n\n\r\r ");
     }
 
-    public function WriteLn()
+    public function WriteLn(): void
     {
         $this->Build();
 
