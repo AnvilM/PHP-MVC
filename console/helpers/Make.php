@@ -7,5 +7,5 @@ function GetControllerData(string $Controller)
 
 function GetModelData(string $Model)
 {
-    return "<?php\n\nnamespace App\Models;\n\nclass $Model\n{\n    //\n}";
+    return "<?php\n\nnamespace App\Models;\n\nuse Src\Database\Model;\n\nclass $Model extends Model\n{\n    //\n}";
 }
