@@ -2,14 +2,16 @@
 
 namespace Src\Support;
 
-class Request
+use Src\Contracts\Request as ContractsRequest;
+
+class Request implements ContractsRequest
 {
     /**
      * Get URI
      *
      * @return string
      */
-    public static function uri()
+    public static function uri(): string
     {
         return $_SERVER['REQUEST_URI'];
     }
@@ -23,7 +25,7 @@ class Request
      *
      * @return string
      */
-    public static function method()
+    public static function method(): string
     {
         return $_SERVER['REQUEST_METHOD'];
     }
@@ -37,7 +39,7 @@ class Request
      *
      * @return array
      */
-    public static function get()
+    public static function get(): array
     {
         return $_GET;
     }
@@ -51,7 +53,7 @@ class Request
      *
      * @return array
      */
-    public static function post()
+    public static function post(): array
     {
         return $_POST;
     }
@@ -67,7 +69,7 @@ class Request
      * @param  mixed $default - Default value
      * @return string
      */
-    public static function route($param, $default = '')
+    public static function route($param, $default = ''): string
     {
 
         $param = '{' . $param . '}';
