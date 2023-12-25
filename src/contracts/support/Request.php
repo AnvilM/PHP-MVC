@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts;
+namespace Src\Contracts\Support;
 
 interface Request
 {

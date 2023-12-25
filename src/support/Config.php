@@ -2,9 +2,9 @@
 
 namespace Src\Support;
 
-use Src\Contracts\Config as ContractsConfig;
+use Src\Contracts\Support\Config as ContractsSupportConfig;
 
-class Config implements ContractsConfig
+class Config implements ContractsSupportConfig
 {
     //Get config
     public static function get(string $config): array

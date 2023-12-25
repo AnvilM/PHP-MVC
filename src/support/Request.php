@@ -2,9 +2,9 @@
 
 namespace Src\Support;
 
-use Src\Contracts\Request as ContractsRequest;
+use Src\Contracts\Support\Request as ContractsSupportRequest;
 
-class Request implements ContractsRequest
+class Request implements ContractsSupportRequest
 {
     /**
      * Get URI
