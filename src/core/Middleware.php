@@ -26,7 +26,7 @@ class Middleware
     //Load Middlewares
     private function loadMiddlewares()
     {
-        if (count($this->Route['Middleware']) >= 1)
+        if (key_exists('Middleware', $this->Route) && count($this->Route['Middleware']) >= 1)
         {
             foreach ($this->Route['Middleware'] as $Middleware)
             {
