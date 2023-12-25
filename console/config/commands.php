@@ -1,6 +1,7 @@
 <?php
 
 use Console\Commands\Make\Controller;
+use Console\Commands\Make\Middleware;
 use Console\Commands\Make\Model;
 use Console\Commands\Printr;
 
@@ -18,5 +19,10 @@ return [
     [
         'Name' => 'make:model',
         'Class' => Model::class
+    ],
+
+    [
+        'Name' => 'make:middleware',
+        'Class' => Middleware::class
     ]
 ];
