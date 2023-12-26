@@ -15,13 +15,9 @@ composer create-project anvilm/PHP-MVC
 
 All routes are registered in the file routes/Routes.php.
 This example initializes the Home route with the Home [controller](#controllers), Index [action](#actions) and GET method.
+
 ```php
-[
-    "URI" => '/home',
-    "Method" => 'GET',
-    "Controller" => "App\Controllers\HomeController",
-    "Action" => "Index",
-]
+$Route->Add()->get('/home')->controller(HomeController::class)->action('IndexAction');
 ```
 
 ### Controllers
