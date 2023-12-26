@@ -28,7 +28,7 @@ class Method implements ContractsSupportRouteMethod
 
 
     /**
-     * Add get route to route
+     * Add GET route to routes
      *
      * @param  mixed $Route Route
      * 
@@ -48,13 +48,73 @@ class Method implements ContractsSupportRouteMethod
 
 
     /**
-     * Add get route to route
+     * Add POST route to routes
      *
      * @param  mixed $Route Route
      * 
      * @return Components
      */
     public function Post(string $Route): Components
+    {
+        $this->Builder
+            ->Add('Method', 'GET')
+            ->Add('URI', $Route);
+
+        return $this->Components;
+    }
+
+
+
+
+
+    /**
+     * Add PUT route to routes
+     *
+     * @param  mixed $Route Route
+     * 
+     * @return Components
+     */
+    public function Put(string $Route): Components
+    {
+        $this->Builder
+            ->Add('Method', 'GET')
+            ->Add('URI', $Route);
+
+        return $this->Components;
+    }
+
+
+
+
+
+    /**
+     * Add PATCH route to routes
+     *
+     * @param  mixed $Route Route
+     * 
+     * @return Components
+     */
+    public function Patch(string $Route): Components
+    {
+        $this->Builder
+            ->Add('Method', 'GET')
+            ->Add('URI', $Route);
+
+        return $this->Components;
+    }
+
+
+
+
+
+    /**
+     * Add DELETE route to routes
+     *
+     * @param  mixed $Route Route
+     * 
+     * @return Components
+     */
+    public function Delete(string $Route): Components
     {
         $this->Builder
             ->Add('Method', 'GET')

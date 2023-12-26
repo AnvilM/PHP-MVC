@@ -36,6 +36,25 @@ class Builder implements ContractsSupportRouteBuilder
 
 
     /**
+     * Add param to route
+     *
+     * @param  string $Param Parameter for adding
+     * @param  string $Value Parameter value
+     * 
+     * @return Builder
+     */
+    public function AddArray(string $Param, string $Value): Builder
+    {
+        $this->Route[$Param][] = $Value;
+
+        return $this;
+    }
+
+
+
+
+
+    /**
      * Complete route
      *
      * @return void

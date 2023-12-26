@@ -63,4 +63,21 @@ class Components implements ContractsSupportRouteComponents
 
         return $this;
     }
+
+
+
+
+
+    /**
+     * Add a middleware to route
+     *
+     * @param  mixed $Action Action for adding
+     * @return Components
+     */
+    public function Middleware(string $Middleware): Components
+    {
+        $this->Builder->AddArray('Middleware', $Middleware);
+
+        return $this;
+    }
 }
