@@ -73,19 +73,28 @@ class Router
                 return false;
             }
 
+            $breaked = false;
+
             for ($i = 0; $i < count($route_uri); $i++)
             {
 
 
                 if ($route_uri[$i] != $request_uri[$i] && !preg_match('/(^{+[a-z]+}$)/', $route_uri[$i]))
                 {
-                    return false;
+                    $breaked = true;
+                    break;
                 }
+            }
+
+            if ($breaked)
+            {
+                continue;
             }
 
             $this->Route = $Route;
             return true;
         }
+        return false;
     }
 
 
