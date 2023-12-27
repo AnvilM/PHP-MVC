@@ -70,7 +70,7 @@ class Router
 
             if (count($route_uri) != count($request_uri))
             {
-                return false;
+                continue;
             }
 
             $breaked = false;

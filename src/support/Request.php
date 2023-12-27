@@ -79,13 +79,15 @@ class Request implements ContractsSupportRequest
         foreach ($Routes as $Route)
         {
             $route_uri = explode('/', $Route['URI']);
-            $request_uri = explode('/', $_SERVER['REQUEST_URI']);
+            $request_uri = explode('/', Request::uri());
 
 
             if (count($route_uri) != count($request_uri))
             {
-                break;
+                continue;
             }
+
+            $breaked = false;
 
             for ($i = 0; $i < count($route_uri); $i++)
             {
@@ -93,8 +95,14 @@ class Request implements ContractsSupportRequest
 
                 if ($route_uri[$i] != $request_uri[$i] && !preg_match('/(^{+[a-z]+}$)/', $route_uri[$i]))
                 {
+                    $breaked = true;
                     break;
                 }
+            }
+
+            if ($breaked)
+            {
+                continue;
             }
         }
 
