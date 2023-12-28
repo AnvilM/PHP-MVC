@@ -7,7 +7,7 @@ function GetControllerData(string $Controller)
 
 function GetModelData(string $Model)
 {
-    return "<?php\n\nnamespace App\Models;\n\nuse Src\Database\Model;\n\nclass $Model extends Model\n{\n    //\n}";
+    return "<?php\n\nnamespace App\Models;\n\nuse Src\Database\Eloquent\Model;\n\nclass $Model extends Model\n{\n    //Set model database table\n    public function __construct()\n    {\n        " . '$this->setTable(get_class());' . "\n    }\n}";
 }
 
 function GetMiddlewareData(string $Middleware)
