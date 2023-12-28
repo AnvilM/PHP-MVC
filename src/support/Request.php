@@ -13,7 +13,7 @@ class Request implements ContractsSupportRequest
      */
     public static function uri(): string
     {
-        return $_SERVER['REQUEST_URI'];
+        return strtolower($_SERVER['REQUEST_URI']);
     }
 
 
