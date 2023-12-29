@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Database\Eloquent;
+namespace Src\Database\Eloquent\Mysql;
 
 use Src\Contracts\Database\Eloquent\Drivers\Driver;
 
@@ -9,30 +9,18 @@ use Src\Database\Eloquent\Mysql\Insert\Insert;
 use Src\Database\Eloquent\Mysql\Select\Select;
 use Src\Database\Eloquent\Mysql\Update\Update;
 
-use Src\Database\Eloquent\Mysql\Mysql;
-
-
-class Model
+class Mysql implements Driver
 {
     private string $Table = '';
 
-    private Driver $Driver;
+
+
+
 
     //Set model tabel
-    protected function setTable(string $Table): void
+    public function __construct(string $Table)
     {
-        $this->Table = strtolower(explode('\\', $Table)[count(explode('\\', $Table)) - 1]);
-
-        $this->Model();
-    }
-
-    private function Model()
-    {
-        switch (env("DB_CONNECTION"))
-        {
-            case ("mysql"):
-                $this->Driver = new Mysql($this->Table);
-        }
+        $this->Table = $Table;
     }
 
 
@@ -47,7 +35,7 @@ class Model
      */
     public function select(array $Fields = ['*']): Select
     {
-        $Select = $this->Driver->Select($Fields);
+        $Select = new Select($this->Table, $Fields);
         return $Select;
     }
 
@@ -62,7 +50,7 @@ class Model
      */
     public function insert(): Insert
     {
-        $Insert = $this->Driver->Insert($this->Table);
+        $Insert = new Insert($this->Table);
         return $Insert;
     }
 
@@ -77,7 +65,7 @@ class Model
      */
     public function update(): Update
     {
-        $Update = $this->Driver->Update($this->Table);
+        $Update = new Update($this->Table);
         return $Update;
     }
 
@@ -92,7 +80,7 @@ class Model
      */
     public function delete(): Delete
     {
-        $Delete = $this->Driver->Delete($this->Table);
+        $Delete = new Delete($this->Table);
         return $Delete;
     }
 }
