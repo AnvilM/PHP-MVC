@@ -2,21 +2,34 @@
 
 namespace Src\Support\Database;
 
-use mysqli;
+use Src\Contracts\Support\Database\Drivers\Driver;
+
+use Src\Support\Database\Mysql\Delete\Delete;
+use Src\Support\Database\Mysql\Insert\Insert;
+use Src\Support\Database\Mysql\Select\Select;
+use Src\Support\Database\Mysql\Update\Update;
+
+use Src\Support\Database\Mysql\Mysql;
+
 
 class DB
 {
 
-    public static function Query(string $Query)
+    private static Driver $Driver;
+    //Set model tabel
+    public static function table(string $Table)
     {
-        $Connection = new mysqli(
-            env('DB_HOST'),
-            env('DB_USERNAME'),
-            env('DB_PASSWORD'),
-            env('DB_DATABASE'),
-            env('DB_PORT')
-        );
+        return self::Driver($Table);
+    }
 
-        return $Connection->query($Query);
+    private static function Driver(string $Table)
+    {
+        switch (env("DB_CONNECTION"))
+        {
+            case ("mysql"):
+                self::$Driver = new Mysql($Table);
+        }
+
+        return self::$Driver;
     }
 }
