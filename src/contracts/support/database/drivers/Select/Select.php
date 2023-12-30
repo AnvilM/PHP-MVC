@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts\Database\Eloquent\Drivers\Select;
+namespace Src\Contracts\Support\Database\Drivers\Select;
 
 use PDO;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts\Database\Eloquent\Drivers\Update;
+namespace Src\Contracts\Support\Database\Drivers\Update;
 
 use PDO;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts\Database\Eloquent\Drivers\Insert;
+namespace Src\Contracts\Support\Database\Drivers\Insert;
 
 use PDO;
 

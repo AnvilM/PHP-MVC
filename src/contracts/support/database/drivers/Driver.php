@@ -1,11 +1,11 @@
 <?php
 
-namespace Src\Contracts\Database\Eloquent\Drivers;
+namespace Src\Contracts\Support\Database\Drivers;
 
-use Src\Database\Eloquent\Mysql\Delete\Delete;
-use Src\Database\Eloquent\Mysql\Insert\Insert;
-use Src\Database\Eloquent\Mysql\Select\Select;
-use Src\Database\Eloquent\Mysql\Update\Update;
+use Src\Support\Database\Mysql\Delete\Delete;
+use Src\Support\Database\Mysql\Insert\Insert;
+use Src\Support\Database\Mysql\Select\Select;
+use Src\Support\Database\Mysql\Update\Update;
 
 interface Driver
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts\Database\Eloquent\Drivers\Delete;
+namespace Src\Contracts\Support\Database\Drivers\Delete;
 
 use PDO;
 
