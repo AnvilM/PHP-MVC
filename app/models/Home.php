@@ -2,13 +2,9 @@
 
 namespace App\Models;
 
-use Src\Database\Eloquent\Model;
+use Src\Database\Model;
 
 class Home extends Model
 {
-    //Set model database table
-    public function __construct()
-    {
-        $this->setTable(get_class());
-    }
+    //
 }
