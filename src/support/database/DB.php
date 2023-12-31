@@ -4,11 +4,6 @@ namespace Src\Support\Database;
 
 use Src\Contracts\Support\Database\Drivers\Driver;
 
-use Src\Support\Database\Mysql\Delete\Delete;
-use Src\Support\Database\Mysql\Insert\Insert;
-use Src\Support\Database\Mysql\Select\Select;
-use Src\Support\Database\Mysql\Update\Update;
-
 use Src\Support\Database\Mysql\Mysql;
 
 

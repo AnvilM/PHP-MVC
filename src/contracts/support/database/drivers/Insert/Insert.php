@@ -13,12 +13,25 @@ interface Insert
 
 
 
-    public function set(string $Field, string $Value, int $Type = PDO::PARAM_STR): Insert;
+    /**
+     * Set value for insert
+     *
+     * @param  mixed $Column Insert column
+     * @param  mixed $Value Insert value
+     * @param  mixed $Type Value data type
+     * @return Insert
+     */
+    public function set(string $Column, string $Value, int $Type = PDO::PARAM_STR): Insert;
 
 
 
 
 
 
+    /**
+     * Execute query
+     *
+     * @return void
+     */
     public function run();
 }

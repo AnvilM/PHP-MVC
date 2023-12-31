@@ -28,14 +28,14 @@ class Mysql implements Driver
 
 
     /**
-     * Select fields from database
+     * Select fields from table
      *
-     * @param  array $Fields Fields for select
+     * @param  array $Columns Columns for select
      * @return Select
      */
-    public function select(array $Fields = ['*']): Select
+    public function select(array $Columns = ['*']): Select
     {
-        $Select = new Select($this->Table, $Fields);
+        $Select = new Select($this->Table, $Columns);
         return $Select;
     }
 
@@ -44,7 +44,7 @@ class Mysql implements Driver
 
 
     /**
-     * Insert data to database
+     * Insert data to table
      *
      * @return Insert
      */
@@ -59,7 +59,7 @@ class Mysql implements Driver
 
 
     /**
-     * Update field in database
+     * Update field in table
      *
      * @return Update
      */
@@ -74,7 +74,7 @@ class Mysql implements Driver
 
 
     /**
-     * Delete field from database
+     * Delete field from table
      *
      * @return Delete
      */

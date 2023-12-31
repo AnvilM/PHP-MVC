@@ -25,11 +25,19 @@ class Update extends Builder implements UpdateInterface
 
 
 
-    public function set(string $Field, string $Value, int $Type = PDO::PARAM_STR): Update
+    /**
+     * Set new values
+     *
+     * @param  mixed $Column Column for new value
+     * @param  mixed $Value New value
+     * @param  mixed $Type Value data type
+     * @return Update
+     */
+    public function set(string $Column, string $Value, int $Type = PDO::PARAM_STR): Update
     {
         $Multiply = substr_count($this->getQuery(), '=') > 0 ? "," : "";
 
-        $this->addToQuery("$Multiply$Field = ?")->addBind($Value, $Type);
+        $this->addToQuery("$Multiply$Column = ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -38,11 +46,20 @@ class Update extends Builder implements UpdateInterface
 
 
 
-    public function where(string $Field, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Update
+    /**
+     * Add Where to query
+     *
+     * @param  mixed $Column Colmn
+     * @param  mixed $Sign Sign (+, -, >, <, =)
+     * @param  mixed $Value Value
+     * @param  mixed $Type Value data type
+     * @return Select
+     */
+    public function where(string $Column, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Update
     {
         $Multiply = str_contains($this->getQuery(), 'WHERE') ? "AND" : "WHERE";
 
-        $this->addToQuery("$Multiply $Field $Sign ?")->addBind($Value, $Type);
+        $this->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -51,6 +68,11 @@ class Update extends Builder implements UpdateInterface
 
 
 
+    /**
+     * Execute query
+     *
+     * @return void
+     */
     public function run()
     {
         return $this->build()->execute()->fetchAll(PDO::FETCH_ASSOC);

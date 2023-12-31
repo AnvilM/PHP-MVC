@@ -18,19 +18,19 @@ interface Driver
 
 
     /**
-     * Select fields from database
+     * Select Columns from table
      *
-     * @param  array $Fields Fields for select
+     * @param  array $Columns Columns for select
      * @return Select
      */
-    public function select(array $Fields = ['*']): Select;
+    public function select(array $Columns = ['*']): Select;
 
 
 
 
 
     /**
-     * Insert data to database
+     * Insert data to table
      *
      * @return Insert
      */
@@ -41,7 +41,7 @@ interface Driver
 
 
     /**
-     * Update field in database
+     * Update field in table
      *
      * @return Update
      */
@@ -52,7 +52,7 @@ interface Driver
 
 
     /**
-     * Delete field from database
+     * Delete field from table
      *
      * @return Delete
      */

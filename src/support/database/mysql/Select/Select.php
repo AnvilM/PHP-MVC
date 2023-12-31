@@ -15,22 +15,31 @@ class Select extends Builder implements SelectInterface
 
 
 
-    public function __construct(string $Table, array $Fields = ['*'])
+    public function __construct(string $Table, array $Columns = ['*'])
     {
-        $Fields = implode(',', $Fields);
+        $Columns = implode(',', $Columns);
 
-        $this->addToQuery("SELECT $Fields FROM $Table");
+        $this->addToQuery("SELECT $Columns FROM $Table");
     }
 
 
 
 
 
-    public function where(string $Field, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Select
+    /**
+     * Add Where to query
+     *
+     * @param  mixed $Column Colmn
+     * @param  mixed $Sign Sign (+, -, >, <, =)
+     * @param  mixed $Value Value
+     * @param  mixed $Type Value data type
+     * @return Select
+     */
+    public function where(string $Column, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Select
     {
         $Multiply = str_contains($this->getQuery(), 'WHERE') ? "AND" : "WHERE";
 
-        $this->addToQuery("$Multiply $Field $Sign ?")->addBind($Value, $Type);
+        $this->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -40,15 +49,15 @@ class Select extends Builder implements SelectInterface
 
 
     /**
-     * Add ORDER BY to mysqli query
+     * Add order by to query
      *
-     * @param  mixed $Field
-     * @param  mixed $Method
+     * @param  mixed $Column Column for sort
+     * @param  mixed $Method Sort method
      * @return Select
      */
-    public function orderBy(string $Field, string $Method = 'DESC'): Select
+    public function orderBy(string $Column, string $Method = 'DESC'): Select
     {
-        $this->addToQuery("ORDER BY $Field $Method");
+        $this->addToQuery("ORDER BY $Column $Method");
 
         return $this;
     }
@@ -57,6 +66,11 @@ class Select extends Builder implements SelectInterface
 
 
 
+    /**
+     * Execute query
+     *
+     * @return void
+     */
     public function run()
     {
         return $this->build()->execute()->fetchAll(PDO::FETCH_ASSOC);

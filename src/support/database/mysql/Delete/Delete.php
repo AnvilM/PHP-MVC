@@ -24,11 +24,20 @@ class Delete extends Builder implements DeleteInterface
 
 
 
-    public function where(string $Field, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Delete
+    /**
+     * Add Where to query
+     *
+     * @param  mixed $Column Colmn
+     * @param  mixed $Sign Sign (+, -, >, <, =)
+     * @param  mixed $Value Value
+     * @param  mixed $Type Value data type
+     * @return Select
+     */
+    public function where(string $Column, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Delete
     {
         $Multiply = str_contains($this->getQuery(), 'WHERE') ? "AND" : "WHERE";
 
-        $this->addToQuery("$Multiply $Field $Sign ?")->addBind($Value, $Type);
+        $this->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -37,6 +46,11 @@ class Delete extends Builder implements DeleteInterface
 
 
 
+    /**
+     * Execute query
+     *
+     * @return void
+     */
     public function run()
     {
         return $this->build()->execute();
