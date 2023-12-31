@@ -28,7 +28,7 @@ class Builder
 
 
 
-    protected function addToQuery(string $Query)
+    public function addToQuery(string $Query)
     {
         $this->Query = $this->Query . ' ' . $Query;
 
@@ -39,7 +39,7 @@ class Builder
 
 
 
-    protected function getQuery()
+    public function getQuery()
     {
         return $this->Query;
     }
@@ -48,7 +48,7 @@ class Builder
 
 
 
-    protected function addBind(string $Bind, int $Type = PDO::PARAM_STR)
+    public function addBind(string $Bind, int $Type = PDO::PARAM_STR)
     {
         $LastBind = count($this->Binds);
         $this->Binds[$LastBind]['Bind'] = $Bind;
@@ -61,7 +61,7 @@ class Builder
 
 
 
-    protected function build()
+    public function build()
     {
         $this->prepare();
 
@@ -78,12 +78,25 @@ class Builder
 
 
 
-    protected function execute()
+    public function execute()
     {
         $this->PDOStatement->execute();
 
         $this->Connecion->close();
 
         return $this->PDOStatement;
+    }
+
+
+
+
+
+    public static function exec(string $Query)
+    {
+        $Connection = new Connection;
+        $res = $Connection->open()->query($Query);
+        $Connection->close();
+
+        return $res;
     }
 }

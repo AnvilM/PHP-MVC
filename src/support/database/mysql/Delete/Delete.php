@@ -8,8 +8,9 @@ use Src\Contracts\Support\Database\Drivers\Delete\Delete as DeleteInterface;
 
 use Src\Support\Database\Builder;
 
-class Delete extends Builder implements DeleteInterface
+class Delete implements DeleteInterface
 {
+    private Builder $Builder;
 
 
 
@@ -17,7 +18,9 @@ class Delete extends Builder implements DeleteInterface
 
     public function __construct(string $Table)
     {
-        $this->addToQuery("DELETE FROM $Table");
+        $this->Builder = new Builder;
+
+        $this->Builder->addToQuery("DELETE FROM $Table");
     }
 
 
@@ -35,9 +38,9 @@ class Delete extends Builder implements DeleteInterface
      */
     public function where(string $Column, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Delete
     {
-        $Multiply = str_contains($this->getQuery(), 'WHERE') ? "AND" : "WHERE";
+        $Multiply = str_contains($this->Builder->getQuery(), 'WHERE') ? "AND" : "WHERE";
 
-        $this->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
+        $this->Builder->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -53,6 +56,6 @@ class Delete extends Builder implements DeleteInterface
      */
     public function run()
     {
-        return $this->build()->execute();
+        return $this->Builder->build()->execute();
     }
 }

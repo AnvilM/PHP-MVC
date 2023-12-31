@@ -10,6 +10,7 @@ use Src\Support\Database\Builder;
 
 class Update extends Builder implements UpdateInterface
 {
+    private Builder $Builder;
 
 
 
@@ -17,7 +18,9 @@ class Update extends Builder implements UpdateInterface
 
     public function __construct(string $Table)
     {
-        $this->addToQuery("UPDATE $Table SET");
+        $this->Builder = new Builder;
+
+        $this->Builder->addToQuery("UPDATE $Table SET");
     }
 
 
@@ -35,9 +38,9 @@ class Update extends Builder implements UpdateInterface
      */
     public function set(string $Column, string $Value, int $Type = PDO::PARAM_STR): Update
     {
-        $Multiply = substr_count($this->getQuery(), '=') > 0 ? "," : "";
+        $Multiply = substr_count($this->Builder->getQuery(), '=') > 0 ? "," : "";
 
-        $this->addToQuery("$Multiply$Column = ?")->addBind($Value, $Type);
+        $this->Builder->addToQuery("$Multiply$Column = ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -57,9 +60,9 @@ class Update extends Builder implements UpdateInterface
      */
     public function where(string $Column, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Update
     {
-        $Multiply = str_contains($this->getQuery(), 'WHERE') ? "AND" : "WHERE";
+        $Multiply = str_contains($this->Builder->getQuery(), 'WHERE') ? "AND" : "WHERE";
 
-        $this->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
+        $this->Builder->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -75,6 +78,6 @@ class Update extends Builder implements UpdateInterface
      */
     public function run()
     {
-        return $this->build()->execute()->fetchAll(PDO::FETCH_ASSOC);
+        return $this->Builder->build()->execute()->fetchAll(PDO::FETCH_ASSOC);
     }
 }

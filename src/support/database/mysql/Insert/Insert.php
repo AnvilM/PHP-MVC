@@ -8,8 +8,10 @@ use Src\Contracts\Support\Database\Drivers\Insert\Insert as InsertInterface;
 
 use Src\Support\Database\Builder;
 
-class Insert extends Builder implements InsertInterface
+class Insert implements InsertInterface
 {
+    private Builder $Builder;
+
     private array $Columns;
 
     private array $Values;
@@ -20,7 +22,9 @@ class Insert extends Builder implements InsertInterface
 
     public function __construct(string $Table)
     {
-        $this->addToQuery("INSERT INTO $Table");
+        $this->Builder = new Builder;
+
+        $this->Builder->addToQuery("INSERT INTO $Table");
     }
 
 
@@ -40,7 +44,7 @@ class Insert extends Builder implements InsertInterface
         $this->Columns[] = $Column;
         $this->Values[] = $Value;
 
-        $this->addBind($Value, $Type);
+        $this->Builder->addBind($Value, $Type);
 
         return $this;
     }
@@ -63,7 +67,7 @@ class Insert extends Builder implements InsertInterface
         $FilledValues = str_pad($Values, count($this->Columns) * 2, '?,');
         $Values = substr($FilledValues, 0, -1);
 
-        $this->addToQuery("(" . $Columns . ")")
+        $this->Builder->addToQuery("(" . $Columns . ")")
             ->addToQuery("VALUES")
             ->addToQuery("(" . $Values . ")");
 
@@ -72,6 +76,6 @@ class Insert extends Builder implements InsertInterface
 
 
 
-        return $this->build()->execute();
+        return $this->Builder->build()->execute();
     }
 }

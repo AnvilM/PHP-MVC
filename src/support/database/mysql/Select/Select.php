@@ -8,8 +8,9 @@ use Src\Contracts\Support\Database\Drivers\Select\Select as SelectInterface;
 
 use Src\Support\Database\Builder;
 
-class Select extends Builder implements SelectInterface
+class Select implements SelectInterface
 {
+    private Builder $Builder;
 
 
 
@@ -17,9 +18,11 @@ class Select extends Builder implements SelectInterface
 
     public function __construct(string $Table, array $Columns = ['*'])
     {
+        $this->Builder = new Builder;
+
         $Columns = implode(',', $Columns);
 
-        $this->addToQuery("SELECT $Columns FROM $Table");
+        $this->Builder->addToQuery("SELECT $Columns FROM $Table");
     }
 
 
@@ -37,9 +40,9 @@ class Select extends Builder implements SelectInterface
      */
     public function where(string $Column, string $Sign = '=', string $Value = '1', int $Type = PDO::PARAM_STR): Select
     {
-        $Multiply = str_contains($this->getQuery(), 'WHERE') ? "AND" : "WHERE";
+        $Multiply = str_contains($this->Builder->getQuery(), 'WHERE') ? "AND" : "WHERE";
 
-        $this->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
+        $this->Builder->addToQuery("$Multiply $Column $Sign ?")->addBind($Value, $Type);
 
         return $this;
     }
@@ -57,7 +60,7 @@ class Select extends Builder implements SelectInterface
      */
     public function orderBy(string $Column, string $Method = 'DESC'): Select
     {
-        $this->addToQuery("ORDER BY $Column $Method");
+        $this->Builder->addToQuery("ORDER BY $Column $Method");
 
         return $this;
     }
@@ -73,6 +76,6 @@ class Select extends Builder implements SelectInterface
      */
     public function run()
     {
-        return $this->build()->execute()->fetchAll(PDO::FETCH_ASSOC);
+        return $this->Builder->build()->execute()->fetchAll(PDO::FETCH_ASSOC);
     }
 }
