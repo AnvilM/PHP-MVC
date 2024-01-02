@@ -62,7 +62,7 @@ All middlewares must be specified in the [routes](#routing).
 
 ```php
 [
-    "URI" => '/home/{id}/biba/{anus}',
+    "URI" => '/home',
     "Method" => 'GET',
     "Controller" => "App\Controllers\HomeController",
     "Action" => "IndexAction",
