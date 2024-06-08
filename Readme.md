@@ -1,10 +1,10 @@
 # About
 
-This project is no longer supported see [this](https://github.com/ghostyPHP/Ghosty)
-
 PHP MVC API Framework
 
 For more see [Documentation](https://anvilm.github.io/)
+
+### This project is no longer supported see [this](https://github.com/ghostyPHP/Ghosty)
 
 ## Install
 
