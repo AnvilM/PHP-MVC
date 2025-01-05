@@ -1,6 +1,6 @@
 # About
 
-PHP MVC API Framework
+PHP Framework
 
 ### This project is no longer supported see [this](https://github.com/ghostyPHP/Ghosty)
 
