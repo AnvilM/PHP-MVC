@@ -7,7 +7,7 @@ PHP Framework
 ## Install
 
 ```bash
-composer create-project anvilm/PHP-MVC
+composer create-project anvilm/php.framework
 ```
 
 ## Getting started
