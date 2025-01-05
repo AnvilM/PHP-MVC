@@ -1,6 +1,6 @@
 {
-    "name": "anvilm/php-mvc",
-    "description": "PHP MVC Framework",
+    "name": "anvilm/php.framework",
+    "description": "PHP Framework",
     "type": "project",
     "license": "MIT",
     "autoload": {
